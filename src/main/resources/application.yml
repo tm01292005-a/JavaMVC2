@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    datasource1:
+      username: system
+      password: password
+      url: jdbc:oracle:thin:@localhost:1521:xe
+      driverClassName: oracle.jdbc.driver.OracleDriver
+    datasource2:
+      username: usr02
+      password: 12345
+      url: jdbc:oracle:thin:@localhost:1521:xe
+      driverClassName: oracle.jdbc.driver.OracleDriver
+    datasource3:
+      username: postgres
+      password: postgres
+      url: jdbc:postgresql://localhost:5433/postgres
+      driverClassName: org.postgresql.Driver
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html

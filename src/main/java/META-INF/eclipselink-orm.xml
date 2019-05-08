@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.5" xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_5.xsd">
+    <named-query name="Table1.findAll">
+        <query>select t from Table1 t</query>
+    </named-query>
+    <named-query name="TestView.findAll">
+        <query>select t from TestView t</query>
+    </named-query>
+	<entity class="com.example.jpademo.entity.oracle1.Table1" access="VIRTUAL">
+		<attributes>
+			<basic name="column1" attribute-type="String">
+			</basic>
+			<basic name="column2" attribute-type="java.math.BigDecimal">
+			</basic>
+			<basic name="column3" attribute-type="java.util.Date">
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="id" attribute-type="Object">
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>

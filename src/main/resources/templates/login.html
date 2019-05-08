@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang ="ja"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link id="bootstrap-css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <form th:action="@{/login}" method="post" name="login" class="form-signin">
+                <h3 class="form-signin-heading">Please Sign In</h3>
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                       You have been logged out.
+                    </div>
+                </div>
+                <input type="text"
+                       id="username"
+                       name="username"
+                       class="form-control"
+                       autofocus="autofocus"
+                       placeholder="Username">
+                <input type="password"
+                       id="password"
+                       name="password"
+                       class="form-control"
+                       placeholder="Password">
+                <input type="submit"
+                       name="login-submit"
+                       id="login-submit"
+                       class="btn btn-lg btn-primary btn-block"
+                       value="Log In">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

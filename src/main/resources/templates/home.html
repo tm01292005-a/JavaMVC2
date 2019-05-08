@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link id="bootstrap-css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/header::header">...</div>
+<span sec:authentication="name"></span>
+  <div>
+    <h1>Hello <span sec:authentication="proncipal.cn[0]">User</span> !</h1>
+  </div>
+  Logged user: <span sec:authentication="username"></span>
+  <p th:text="${id}"></p>
+  <form th:action="@{/logout}" method="post">
+    <button>Logout</button>
+  </form>
+</body>
+</html>

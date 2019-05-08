@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 遅延読込設定 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 列名の代わりに列ラベルを使用 -->
+		<setting name="useColumnLabel" value="true" />
+		<!-- スネークケースのカラムとキャメルケースのクラスをマッピング -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeHandlers>
+		<typeHandler jdbcType="LONGVARCHAR" handler="org.apache.ibatis.type.BlobTypeHandler"/>
+	</typeHandlers>
+</configuration>
