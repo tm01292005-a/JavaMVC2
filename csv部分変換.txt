@@ -1,0 +1,6 @@
+cp -rp test.csv test.org.csv
+awk -v ORS='\r\n' -F',' '$1 ~/1/ {print $0}'  test.org.csv > test.csv
+awk -v ORS='\r\n' -F',' '$1 ~/2/ {print $1 "," $2 "," $3 ","  $4 "," substr($5,1,6) "999999" substr($5,13) "," $6 }' test.org.csv >> test.csv
+awk -v ORS='\r\n' -F',' '$1 ~/3/ {printf $0}' test.org.csv >> test.csv
+vimdiff  test.org.csv  test.csv
+
