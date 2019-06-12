@@ -1,0 +1,125 @@
+@startuml
+
+footer Page %page% of %lastpage%
+
+' 操作者定義
+actor ユーザー as user
+
+' Web UIメソッド定義
+box "Web UI" #LightBlue
+	participant "formSign.js" as form <<初期化処理>>
+end box
+
+' コントローラメソッド定義
+box "コントローラ\nXXXController" #LightGreen
+	participant "<<初期化メイン>>\n init()" as c.init
+end box
+
+' サービスメソッド定義
+box "サービス\nXXXService.java" #LightGreen
+	participant "<<AAA処理>>\n init()" as s.init
+	participant "<<BBB処理>>\n init2()" as s.init2
+	participant "<<CCC処理>>\n init3()" as s.init3
+	participant "<<DDD処理>>\n init4()" as s.init4
+end box
+
+' リポジトリメソッド定義
+box "リポジトリ(CRUD API)" #LightGreen
+	participant "XXXRepository\n #xxx()" as r.xxxx
+note right r.xxxx: <font color=red>CARD APIの設計は後報する
+end box
+
+' SQL定義
+'box "SQL" #LightRed
+'	participant "                                                                    " as sql
+'end box
+
+' PostgreSQL テーブル定義
+box "PostgreSQL" #LightBlue
+	database db_sales as p.db_sales
+end box
+
+' Oracle テーブル定義
+box "Oracle" #Orange
+	database db_sales as o.db_sales
+	database db_ysup as o.db_ysup
+	database db_aspsv3 as o.db_aspsv3
+	database jscncsv3 as o.jscncsv3
+end box
+
+' シーケンス番号
+autonumber 1
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''' ユーザー → 画面 のシーケンス 　　　　　　     '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+user -> form : [問い合わせ]ボタン押下
+activate form
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''' 画面 → コントローラ のシーケンス 　　　　　　 '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+form -> c.init: [GET: /api/Payment/init]
+activate c.init
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''' コントローラ → サービス のシーケンス 　　　　 '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+c.init -> s.init: call method
+activate s.init
+
+s.init -> s.init2: call method
+activate s.init2
+
+s.init2 -> s.init3: call method
+activate s.init3
+s.init3 --> s.init2: return
+deactivate s.init3
+
+s.init2 -> s.init4: call method
+activate s.init4
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''' サービス → リポジトリ のシーケンス 　　　　   '''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+s.init4 -> r.xxxx : call method
+activate r.xxxx
+r.xxxx -> p.db_sales: <back:#FFAAAA> select * from ws_m_tr,ws_d_tr where ～
+activate p.db_sales
+rnote right p.db_sales: WS_M_TR, \n WS_D_TR
+p.db_sales --> r.xxxx: データ
+deactivate p.db_sales
+r.xxxx -> s.init4 : return
+deactivate r.xxxx
+
+s.init4 -> r.xxxx : call method
+activate r.xxxx
+r.xxxx -> o.db_sales: <back:#FFAAAA> Oracle Function WS_2330 呼び出し
+activate o.db_sales
+rnote right o.db_sales: WS_2330
+o.db_sales --> r.xxxx: データ
+deactivate o.db_sales
+r.xxxx -> s.init4 : return
+deactivate r.xxxx
+
+s.init4 -> r.xxxx : call method
+activate r.xxxx
+r.xxxx -> o.db_sales: <back:#FFAAAA> select * from ws_m_tr,ws_d_tr where ～
+activate o.db_sales
+rnote right o.db_sales: WS_M_TR, \n WS_D_TR
+o.db_sales --> r.xxxx: データ
+deactivate o.db_sales
+r.xxxx -> s.init4 : return
+deactivate r.xxxx
+deactivate s.init4
+
+s.init4 --> s.init2: return
+
+
+
+deactivate s.init2
+
+form --> user : display main page
+
+@enduml
