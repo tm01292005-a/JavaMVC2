@@ -2,10 +2,19 @@ server:
   port: 8081
 
 spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
   datasource:
     datasource1:
       username: system
-      password: password
+      password: PASSWORD
       url: jdbc:oracle:thin:@localhost:1521:xe
       driverClassName: oracle.jdbc.driver.OracleDriver
     datasource2:

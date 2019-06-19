@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  profiles.active: test
+  datasource:
+    datasource1:
+      username: system
+      password: PASSWORD
+      url: jdbc:oracle:thin:@localhost:1521:xe
+      driverClassName: oracle.jdbc.driver.OracleDriver
+    datasource2:
+      username: usr02
+      password: 12345
+      url: jdbc:oracle:thin:@localhost:1521:xe
+      driverClassName: oracle.jdbc.driver.OracleDriver
+    datasource3:
+      username: postgres
+      password: postgres
+      url: jdbc:postgresql://localhost:5433/postgres_test
+      driverClassName: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+

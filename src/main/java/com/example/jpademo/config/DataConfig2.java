@@ -30,9 +30,9 @@ public class DataConfig2 {
 		return new DataSourceProperties();
 	}
 
-	@Bean("oracle2DataSource")
+	@Bean
 	@Autowired
-	public DataSource datasource2(@Qualifier("datasource2Properties") DataSourceProperties properties) {
+	public DataSource oracle2DataSource(@Qualifier("datasource2Properties") DataSourceProperties properties) {
 		return properties.initializeDataSourceBuilder().build();
 	}
 

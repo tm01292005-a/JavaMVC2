@@ -21,7 +21,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 		basePackages = "com.example.jpademo.repository.postgres",
 		entityManagerFactoryRef = "postgersEntityManager",
 		transactionManagerRef = "postgresTransactionManager"
-)public class DataConfig3 {
+)
+public class DataConfig3 {
 
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource.datasource3")
@@ -29,9 +30,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 		return new DataSourceProperties();
 	}
 
-	@Bean("postgresDataSource")
+	@Bean
 	@Autowired
-	public DataSource datasource3(@Qualifier("datasource3Properties") DataSourceProperties properties) {
+	public DataSource postgresDataSource(@Qualifier("datasource3Properties") DataSourceProperties properties) {
 		return properties.initializeDataSourceBuilder().build();
 	}
 

@@ -31,10 +31,10 @@ public class DataConfig1 {
 		return new DataSourceProperties();
 	}
 
-	@Bean("oracle1DataSource")
+	@Bean
 	@Primary
 	@Autowired
-	public DataSource datasource1(@Qualifier("datasource1Properties") DataSourceProperties properties) {
+	public DataSource oracle1DataSource(@Qualifier("datasource1Properties") DataSourceProperties properties) {
 		return properties.initializeDataSourceBuilder().build();
 	}
 
