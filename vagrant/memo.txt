@@ -1,0 +1,32 @@
+■起動
+cd C:\centos6
+vagrant up
+
+■ログイン
+vagrant ssh
+
+■oracle接続情報
+DB_SALES/password
+192.168.33.10
+1521
+EX
+
+■[PC1]独自boxを作成する
+・/etc/udev を無効化する（ゲストOS）
+sudo ln -s -f /dev/null /etc/udev/rules.d/70-persistent-net.rules
+
+・Boxをエクスポート（ホストOS）
+vagrant package --output package.box
+
+■[PC2]boxから仮想マシンを作成する
+
+・Box をインポート、登録する（ホストOS）
+vagrant box add BOX_NAME ./package.box
+vagrant box list
+vagrant init BOX_NAME
+
+・Vagrantfileなどを修正する。
+
+・起動
+vagrant up 
+vagrant ssh
