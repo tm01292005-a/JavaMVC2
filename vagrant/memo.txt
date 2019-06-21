@@ -30,3 +30,6 @@ vagrant init BOX_NAME
 E‹N“®
 vagrant up 
 vagrant ssh
+
+
+https://vagrantcloud.com/tm01292005/oracle/version/1/provider/virtualbox.box
