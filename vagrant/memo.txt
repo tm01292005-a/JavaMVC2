@@ -25,6 +25,9 @@ vagrant box add BOX_NAME ./package.box
 vagrant box list
 vagrant init BOX_NAME
 
+vagrant init https://vagrantcloud.com/tm01292005/oracle/version/1/provider/virtualbox.box
+
+
 ・Vagrantfileなどを修正する。
 
 ・起動
@@ -32,4 +35,3 @@ vagrant up
 vagrant ssh
 
 
-https://vagrantcloud.com/tm01292005/oracle/version/1/provider/virtualbox.box
